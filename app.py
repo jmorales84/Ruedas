@@ -50,7 +50,7 @@ tipos_llantas = [
 contador = itertools.count()
 
 # -----------------------------------
-# HEURISTICA ADMISIBLE
+# HEURISTICA ADMISIBLE MEJORADA
 # -----------------------------------
 
 def heuristica(
@@ -60,22 +60,33 @@ def heuristica(
 
     h = 0
 
+    empresas_disponibles = (
+        empresas_restantes.copy()
+    )
+
     for tipo in tipos_restantes:
 
-        minimo = float('inf')
+        mejor_costo = float('inf')
+        mejor_empresa = None
 
-        for empresa in empresas_restantes:
+        for empresa in empresas_disponibles:
 
             if tipo in costos[empresa]:
 
-                minimo = min(
-                    minimo,
-                    costos[empresa][tipo]
-                )
+                costo = costos[empresa][tipo]
 
-        if minimo != float('inf'):
+                if costo < mejor_costo:
 
-            h += minimo
+                    mejor_costo = costo
+                    mejor_empresa = empresa
+
+        if mejor_empresa:
+
+            h += mejor_costo
+
+            empresas_disponibles.remove(
+                mejor_empresa
+            )
 
     return h
 
@@ -114,7 +125,8 @@ def algoritmo_a_estrella():
 
     )
 
-    explorados = []
+    mejor_solucion = None
+    mejor_costo = float('inf')
 
     while cola:
 
@@ -132,48 +144,12 @@ def algoritmo_a_estrella():
 
         g_actual = estado["g"]
 
-        tipos_asignados = list(
-            asignaciones.keys()
-        )
+        # SI YA ES MAS CARO
+        # SE PODA
 
-        tipos_restantes = [
+        if g_actual >= mejor_costo:
 
-            t for t in tipos_llantas
-            if t not in tipos_asignados
-
-        ]
-
-        empresas_restantes = [
-
-            e for e in empresas
-            if e not in empresas_usadas
-
-        ]
-
-        h_actual = heuristica(
-
-            tipos_restantes,
-            empresas_restantes
-
-        )
-
-        f_actual = g_actual + h_actual
-
-        explorados.append({
-
-            "asignaciones":
-            asignaciones.copy(),
-
-            "g":
-            g_actual,
-
-            "h":
-            h_actual,
-
-            "f":
-            f_actual
-
-        })
+            continue
 
         # META
 
@@ -181,18 +157,15 @@ def algoritmo_a_estrella():
             tipos_llantas
         ):
 
-            return {
+            if g_actual < mejor_costo:
 
-                "solucion":
-                asignaciones,
+                mejor_costo = g_actual
 
-                "costo_total":
-                g_actual,
+                mejor_solucion = (
+                    asignaciones.copy()
+                )
 
-                "explorados":
-                explorados
-
-            }
+            continue
 
         siguiente_tipo = tipos_llantas[
             len(asignaciones)
@@ -282,7 +255,15 @@ def algoritmo_a_estrella():
 
                     )
 
-    return None
+    return {
+
+        "solucion":
+        mejor_solucion,
+
+        "costo_total":
+        mejor_costo
+
+    }
 
 # -----------------------------------
 # PAGINA PRINCIPAL
