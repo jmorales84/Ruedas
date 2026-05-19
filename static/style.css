@@ -1,28 +1,20 @@
 *{
-
     margin:0;
     padding:0;
     box-sizing:border-box;
-
-    font-family:Arial;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body{
 
-    background:
-    linear-gradient(
-    135deg,
-    #042f2e,
-    #065f46,
-    #4c1d95
-    );
+    background:#eef2f7;
 
-    min-height:100vh;
+    color:#1e293b;
 
     padding:40px;
-
-    color:white;
 }
+
+/* CONTENEDOR */
 
 .container{
 
@@ -31,74 +23,130 @@ body{
     margin:auto;
 }
 
-h1{
+/* TITULO */
+
+.titulo{
 
     text-align:center;
 
     margin-bottom:40px;
+}
+
+.titulo h1{
+
+    color:#284b63;
 
     font-size:3rem;
 
-    color:#ccfbf1;
+    margin-bottom:10px;
 }
+
+.titulo p{
+
+    color:#64748b;
+
+    font-size:1.1rem;
+}
+
+/* GRID SUPERIOR */
+
+.top-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(350px,1fr));
+
+    gap:25px;
+
+    margin-bottom:30px;
+}
+
+/* CARDS */
 
 .card{
 
-    background:
-    rgba(255,255,255,0.08);
+    background:white;
 
     padding:30px;
 
-    border-radius:25px;
+    border-radius:22px;
 
     margin-bottom:30px;
 
-    backdrop-filter:blur(12px);
-
     box-shadow:
-    0 10px 25px rgba(0,0,0,0.3);
+    0 6px 18px rgba(0,0,0,0.08);
 }
+
+/* TABLA MAS COMPACTA */
+
+.tabla-card{
+
+    max-width:900px;
+
+    margin:auto;
+
+    margin-bottom:30px;
+}
+
+/* TITULOS */
 
 h2{
 
     margin-bottom:20px;
 
-    color:#a7f3d0;
+    color:#284b63;
+
+    font-size:1.4rem;
 }
+
+/* FORMULARIOS */
 
 form{
 
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(200px,1fr));
+    repeat(auto-fit,minmax(220px,1fr));
 
-    gap:20px;
+    gap:15px;
 }
+
+/* INPUTS */
 
 input,
 select{
 
-    padding:15px;
+    padding:14px;
 
-    border:none;
+    border:1px solid #dbe4ee;
 
     border-radius:12px;
 
     outline:none;
 
     font-size:1rem;
+
+    background:#f8fafc;
+
+    transition:0.3s;
 }
+
+input:focus,
+select:focus{
+
+    border-color:#3c6e71;
+
+    background:white;
+}
+
+/* BOTONES */
 
 button{
 
-    background:#14b8a6;
-
     border:none;
 
-    color:white;
-
-    padding:15px;
+    padding:14px;
 
     border-radius:12px;
 
@@ -109,19 +157,47 @@ button{
     transition:0.3s;
 }
 
-button:hover{
+/* BOTON PRINCIPAL */
 
-    background:#2dd4bf;
+.btn-principal{
 
-    transform:scale(1.03);
+    background:#3c6e71;
+
+    color:white;
+
+    font-weight:600;
 }
 
-.linea{
+.btn-principal:hover{
 
-    margin:35px 0;
+    background:#284b63;
 
-    border:
-    1px solid rgba(255,255,255,0.2);
+    transform:translateY(-2px);
+}
+
+/* BOTON ELIMINAR */
+
+.btn-eliminar{
+
+    background:#e76f51;
+
+    color:white;
+
+    padding:6px 12px;
+
+    font-size:0.9rem;
+}
+
+.btn-eliminar:hover{
+
+    background:#d8573c;
+}
+
+/* TABLAS */
+
+.table-container{
+
+    overflow-x:auto;
 }
 
 table{
@@ -130,66 +206,85 @@ table{
 
     border-collapse:collapse;
 
-    overflow:hidden;
+    margin-top:15px;
+
+    font-size:0.95rem;
 }
 
 th{
 
-    background:#14b8a6;
+    background:#d9eaf0;
 
-    padding:15px;
+    color:#284b63;
+
+    padding:12px;
+
+    font-weight:600;
 }
 
 td{
 
-    padding:15px;
+    padding:12px;
+
+    border-bottom:
+    1px solid #e5e7eb;
 
     text-align:center;
-
-    background:
-    rgba(255,255,255,0.05);
 }
 
-tr:hover td{
+tr:hover{
 
-    background:
-    rgba(255,255,255,0.1);
+    background:#f8fafc;
 }
+
+/* RESULTADOS */
 
 .resultado-grid{
 
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(200px,1fr));
+    repeat(auto-fit,minmax(220px,1fr));
 
     gap:20px;
 }
 
 .resultado-item{
 
-    background:#0f766e;
+    background:#edf6f9;
 
     padding:25px;
 
-    border-radius:20px;
+    border-radius:18px;
 
     text-align:center;
+
+    border-left:
+    6px solid #3c6e71;
 
     transition:0.3s;
 }
 
 .resultado-item:hover{
 
-    transform:translateY(-5px);
-
-    background:#14b8a6;
+    transform:translateY(-4px);
 }
 
 .resultado-item h3{
 
+    color:#284b63;
+
     margin-bottom:10px;
 }
+
+.resultado-item p{
+
+    color:#475569;
+
+    font-size:1rem;
+}
+
+/* COSTO TOTAL */
 
 .total{
 
@@ -199,5 +294,54 @@ tr:hover td{
 
     font-size:2rem;
 
-    color:#ddd6fe;
+    font-weight:700;
+
+    color:#7b6ee6;
+}
+
+/* ACCIONES */
+
+.acciones{
+
+    display:flex;
+
+    justify-content:center;
+}
+
+/* HEADER SECCIONES */
+
+.section-header{
+
+    margin-bottom:20px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    body{
+
+        padding:20px;
+    }
+
+    .titulo h1{
+
+        font-size:2.2rem;
+    }
+
+    .card{
+
+        padding:20px;
+    }
+
+    form{
+
+        grid-template-columns:1fr;
+    }
+
+    .resultado-grid{
+
+        grid-template-columns:1fr;
+    }
+
 }

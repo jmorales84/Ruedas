@@ -175,9 +175,7 @@ def algoritmo_a_estrella():
 
         })
 
-        # -------------------------
         # META
-        # -------------------------
 
         if len(asignaciones) == len(
             tipos_llantas
@@ -309,7 +307,7 @@ def index():
     )
 
 # -----------------------------------
-# AGREGAR COSTOS
+# AGREGAR DATOS
 # -----------------------------------
 
 @app.route(
@@ -359,6 +357,28 @@ def nuevo_tipo():
     if tipo not in tipos_llantas:
 
         tipos_llantas.append(tipo)
+
+    return redirect('/')
+
+# -----------------------------------
+# ELIMINAR
+# -----------------------------------
+
+@app.route(
+    '/eliminar/<empresa>/<tipo>'
+)
+
+def eliminar(empresa, tipo):
+
+    if empresa in costos:
+
+        if tipo in costos[empresa]:
+
+            del costos[empresa][tipo]
+
+            if len(costos[empresa]) == 0:
+
+                del costos[empresa]
 
     return redirect('/')
 
