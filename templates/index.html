@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        Algoritmo A*
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>
+        🚗 Algoritmo A*
+    </h1>
+
+    <!-- FORMULARIO -->
+
+    <div class="card">
+
+        <h2>
+            ➕ Agregar Datos
+        </h2>
+
+        <form
+            action="/agregar"
+            method="POST"
+        >
+
+            <input
+                type="text"
+                name="empresa"
+                placeholder="Empresa"
+                required
+            >
+
+            <select
+                name="tipo"
+                required
+            >
+
+                <option value="">
+                    Selecciona tipo
+                </option>
+
+                {% for tipo in tipos %}
+
+                <option value="{{ tipo }}">
+                    {{ tipo }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <input
+                type="number"
+                name="costo"
+                placeholder="Costo"
+                required
+            >
+
+            <button type="submit">
+
+                Agregar
+
+            </button>
+
+        </form>
+
+        <hr class="linea">
+
+        <h2>
+            🆕 Nuevo Tipo
+        </h2>
+
+        <form
+            action="/nuevo_tipo"
+            method="POST"
+        >
+
+            <input
+                type="text"
+                name="nuevo_tipo"
+                placeholder="Ejemplo: X"
+                required
+            >
+
+            <button type="submit">
+
+                Crear Tipo
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- TABLA -->
+
+    <div class="card">
+
+        <h2>
+            📋 Datos Registrados
+        </h2>
+
+        <table>
+
+            <tr>
+
+                <th>
+                    Empresa
+                </th>
+
+                <th>
+                    Tipo
+                </th>
+
+                <th>
+                    Costo
+                </th>
+
+            </tr>
+
+            {% for empresa, datos in costos.items() %}
+
+                {% for tipo, costo in datos.items() %}
+
+                <tr>
+
+                    <td>
+                        {{ empresa }}
+                    </td>
+
+                    <td>
+                        {{ tipo }}
+                    </td>
+
+                    <td>
+                        ${{ costo }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+    <!-- SOLUCION -->
+
+    {% if resultado %}
+
+    <div class="card">
+
+        <h2>
+            ✅ Mejor Solución
+        </h2>
+
+        <div class="resultado-grid">
+
+            {% for tipo, empresa in resultado.solucion.items() %}
+
+            <div class="resultado-item">
+
+                <h3>
+                    Tipo {{ tipo }}
+                </h3>
+
+                <p>
+                    {{ empresa }}
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="total">
+
+            💰 Total:
+            ${{ resultado.costo_total }}
+
+        </div>
+
+    </div>
+
+    <!-- NODOS -->
+
+    <div class="card">
+
+        <h2>
+            🌳 Exploración A*
+        </h2>
+
+        <table>
+
+            <tr>
+
+                <th>
+                    Asignaciones
+                </th>
+
+                <th>
+                    g(n)
+                </th>
+
+                <th>
+                    h(n)
+                </th>
+
+                <th>
+                    f(n)
+                </th>
+
+            </tr>
+
+            {% for nodo in resultado.explorados %}
+
+            <tr>
+
+                <td>
+
+                    {% for tipo, empresa in nodo.asignaciones.items() %}
+
+                        {{ tipo }}
+                        →
+                        {{ empresa }}
+                        <br>
+
+                    {% endfor %}
+
+                </td>
+
+                <td>
+                    {{ nodo.g }}
+                </td>
+
+                <td>
+                    {{ nodo.h }}
+                </td>
+
+                <td>
+                    {{ nodo.f }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>

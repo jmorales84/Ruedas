@@ -1,0 +1,203 @@
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+    font-family:Arial;
+}
+
+body{
+
+    background:
+    linear-gradient(
+    135deg,
+    #042f2e,
+    #065f46,
+    #4c1d95
+    );
+
+    min-height:100vh;
+
+    padding:40px;
+
+    color:white;
+}
+
+.container{
+
+    max-width:1300px;
+
+    margin:auto;
+}
+
+h1{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+    font-size:3rem;
+
+    color:#ccfbf1;
+}
+
+.card{
+
+    background:
+    rgba(255,255,255,0.08);
+
+    padding:30px;
+
+    border-radius:25px;
+
+    margin-bottom:30px;
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.3);
+}
+
+h2{
+
+    margin-bottom:20px;
+
+    color:#a7f3d0;
+}
+
+form{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+
+    gap:20px;
+}
+
+input,
+select{
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:1rem;
+}
+
+button{
+
+    background:#14b8a6;
+
+    border:none;
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    transition:0.3s;
+}
+
+button:hover{
+
+    background:#2dd4bf;
+
+    transform:scale(1.03);
+}
+
+.linea{
+
+    margin:35px 0;
+
+    border:
+    1px solid rgba(255,255,255,0.2);
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    overflow:hidden;
+}
+
+th{
+
+    background:#14b8a6;
+
+    padding:15px;
+}
+
+td{
+
+    padding:15px;
+
+    text-align:center;
+
+    background:
+    rgba(255,255,255,0.05);
+}
+
+tr:hover td{
+
+    background:
+    rgba(255,255,255,0.1);
+}
+
+.resultado-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+
+    gap:20px;
+}
+
+.resultado-item{
+
+    background:#0f766e;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    transition:0.3s;
+}
+
+.resultado-item:hover{
+
+    transform:translateY(-5px);
+
+    background:#14b8a6;
+}
+
+.resultado-item h3{
+
+    margin-bottom:10px;
+}
+
+.total{
+
+    margin-top:30px;
+
+    text-align:center;
+
+    font-size:2rem;
+
+    color:#ddd6fe;
+}
